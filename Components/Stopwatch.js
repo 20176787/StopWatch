@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, FlatList, TouchableHighlight} from 'react-native';
 import TimeFormatter from 'minutes-seconds-milliseconds';
-
+import ListLap from './ListLap';
+import {setGlobal} from 'reactn';
 export default function Stopwatch() {
-
     const [running, setRunning] = useState(false);
     const [lapping, setLapping] = useState(false);
     const [laptime] = useState(null);
@@ -26,6 +26,9 @@ export default function Stopwatch() {
     const handleLapReset = () => {
         if (running) {
             lap.push({name: `lap ${id}`, value: `${TimeFormatter(maintime)}`});
+            setGlobal({
+                lap:lap
+            })
             setId(id + 1);
             return;
 
@@ -34,6 +37,9 @@ export default function Stopwatch() {
             setLap([]);
             setMaintime(0);
             setId(0);
+            setGlobal({
+                lap:[]
+            })
         }
 
     };
@@ -78,15 +84,6 @@ export default function Stopwatch() {
             </View>
             <View style={styles.bottom}>
                 {renderButton()}
-                <FlatList data={lap}
-                          showsVerticalScrollIndicator={false}
-                          keyExtractor={item => item.name}
-                          renderItem={({item}) =>
-                              <View style={styles.lapRow}>
-                                  <Text style={styles.lapName}>{item.name}</Text>
-                                  <Text style={styles.lapValue}>{item.value}</Text>
-                              </View>}
-                />
             </View>
         </View>
     );
