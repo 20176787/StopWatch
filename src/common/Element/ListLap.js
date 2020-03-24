@@ -14,6 +14,7 @@ export default function ListLap() {
                               </View>}
                           style={styles.bottom}
                           renderScrollComponent={false}
+                          onEndReachedThreshold={1}
                 />
     );
 }
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
     },
     bottom: {
         backgroundColor: '#F0EFF5',
-        paddingTop:20
+        paddingTop:20,
     },
     mainTime: {
         fontSize: 60,

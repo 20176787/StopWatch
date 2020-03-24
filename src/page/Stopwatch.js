@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, FlatList, TouchableHighlight} from 'react-native';
 import TimeFormatter from 'minutes-seconds-milliseconds';
-import ListLap from './ListLap';
+import ListLap from '../common/Element/ListLap';
 import {setGlobal} from 'reactn';
+import RenderTitle from '../common/Component/RenderTitle';
+import RenderTime from '../common/Component/RenderTime';
 export default function Stopwatch() {
     const [running, setRunning] = useState(false);
     const [lapping, setLapping] = useState(false);
@@ -31,7 +33,6 @@ export default function Stopwatch() {
             })
             setId(id + 1);
             return;
-
         }
         if (!running) {
             setLap([]);
@@ -41,27 +42,6 @@ export default function Stopwatch() {
                 lap:[]
             })
         }
-
-    };
-    const renderTitle = () => {
-        return (
-            <View style={styles.header}>
-                <Text style={styles.title}>
-                    Beemo StopWatch
-                </Text>
-            </View>
-        );
-    };
-    const renderTime = () => {
-        return (
-            <View style={styles.timeWrapper}>
-                <View style={styles.timeWrapperInner}>
-                    <Text style={styles.lapTime}>{TimeFormatter(laptime)}</Text>
-                    <Text style={styles.mainTime}>{TimeFormatter(maintime)}</Text>
-                </View>
-
-            </View>
-        );
     };
     const renderButton = () => {
         return (
@@ -79,8 +59,8 @@ export default function Stopwatch() {
     return (
         <View style={styles.container}>
             <View style={styles.top}>
-                {renderTitle()}
-                {renderTime()}
+                <RenderTitle/>
+                <RenderTime LapTime={laptime} MainTime={maintime}/>
             </View>
             <View style={styles.bottom}>
                 {renderButton()}
