@@ -12,7 +12,7 @@
   "dependencies": {
     "minutes-seconds-milliseconds": "^1.0.3",
     "react": "16.9.0",
-    "react-native": "0.61.5",
+    "react-native": "0.62.3",
     "reactn": "^2.2.6"
   },
   "devDependencies": {
